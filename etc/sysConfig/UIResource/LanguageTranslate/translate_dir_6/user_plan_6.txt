@@ -1,0 +1,33 @@
+Programa de Aprimoramento da Experiência de Usuário
+
+    A Shenzhen Creality 3D Technology Co., Ltd. (doravante denominada de "Creality") fornece produtos e serviços Creality (doravante denominados "Serviços Creality") aos usuários (doravante denominados "usuários" ou "você"). Caso tenha alguma dúvida sobre este "Programa de Aprimoramento da Experiência de Usuário", por favor, entre em contato com cs@creality.com após ler este documento.
+Ao participar do Programa de Aprimoramento da Experiência de Usuário, a Creality pode coletar dados pertinentes para analisar como os produtos são usados, aprimorar a experiência do usuário e melhorar os serviços dos produtos. O dispositivo obterá dados sobre como você usa o produto, incluindo histórico de reconhecimento de erros da câmera e dados de registro da máquina, que podem conter dados descritos na "Política de Privacidade".
+Os usuários possuem a opção de participar ou sair do programa a qualquer momento, usando o menu de suporte no dispositivo. Quando um usuário opta por participar do Programa de Aprimoramento da Experiência de Usuário, ele está agindo livremente. Se o usuário optar por não participar do Programa de Aprimoramento da Experiência de Usuário, poderá desistir dele a qualquer momento.
+1.	Coleta de Dados
+A fim de fornecer melhores produtos ou serviços para você, com sua autorização para participar deste programa, a Creality coletará dados para as seguintes finalidades:
+Diagnóstico do produto
+•	Informações do dispositivo, inclusive endereço MAC do dispositivo, número SN, número DN, país/região, versão do sistema, modelo do dispositivo, informações do sistema.
+•	Informações de conexão do dispositivo, inclusive informações de rede e intensidade do sinal.
+•	Informações sobre o status do dispositivo, incluindo dados de ligação/desligamento e dados do sensor.
+•	Informações sobre a câmera do dispositivo, incluindo o status da câmera, informações sobre a imagem da câmera após a ocorrência de erros.
+•	Registros de uso para o dispositivo e funções associadas, incluindo dados de registro pertinentes após irregularidades no sistema e no dispositivo.
+Análise de uso e usabilidade da função do produto
+•	Dados de interação, como o número de vezes que os botões de função do produto são clicados, frequência de uso da função.
+•	Informações sobre a exibição da função, como o tempo de permanência na página da tela.
+•	Informações de seleção de configuração, como o status das opções de função do produto.
+•	Informações sobre funções e uso do produto, como tempo de espera, duração da impressão, tempo da tarefa de impressão e outras informações relevantes.
+2.	Uso de Dados
+A Creality se compromete a cumprir rigorosamente as leis e os regulamentos nacionais relevantes. A Creality manterá as informações e o conteúdo coletados estritamente confidenciais, que serão usados apenas para melhorar a qualidade do produto e aprimorar os serviços do produto, e não serão fornecidos a empresas terceirizadas não relacionadas a essa finalidade. Se você não fornecer essas informações, isso não afetará seu uso normal, mas não poderemos resolver quaisquer problemas que possam melhorar a experiência do usuário durante seu uso.
+Abaixo estão exemplos detalhados de como usamos suas informações:
+•	Otimizar o desempenho do dispositivo, como a análise do uso da CPU e da memória durante a impressão.
+•	Analise o conteúdo de falhas para melhorar o serviço pós-venda, como analisar informações de erros durante a impressão e informações do histórico de reconhecimento de erros da câmera e conduzir uma análise detalhada de quais falhas ocorreram durante o uso do produto.
+•	Melhorar a experiência do usuário, como analisar o status de ativação/desativação das funções da máquina do usuário, determinando a taxa de uso dessa função para otimizá-la continuamente e melhorar a experiência.
+3.	Local de Armazenamento de Dados
+Atualmente, a Creality possui centros de dados na China e nos Estados Unidos.
+•	Armazenaremos as informações coletadas e geradas na China continental em centros de dados na China continental, exceto quando disposto de outra forma pelas leis aplicáveis que permitem o transporte transfronteiriço.
+•	Armazenaremos as informações coletadas e geradas em outras regiões que não a China continental em centros de dados nos Estados Unidos, exceto conforme disposto de outra forma pelas leis aplicáveis que permitem o transporte internacional.
+4.	Período de Armazenamento de Dados
+Suas informações pessoais serão mantidas por nós somente pelo tempo necessário para cumprir os objetivos da coleta de dados ou pelo tempo exigido pelas leis e regulamentos relevantes. Você tem o direito, a qualquer momento durante esse período, de solicitar que apaguemos os dados que adquirimos sobre você ou de se retirar do programa.
+5.	Seus Direitos
+Após a sua inscrição no programa, você pode entrar em contato conosco para resolver qualquer dúvida que você possa ter, solicitações que possa ter para gerenciar ou excluir os dados que coletamos sobre você, solicitações para sair do programa ou solicitações relativas aos dados que processamos. Você poderá entrar em contato conosco pelo e-mail cs@creality.com, e trataremos do assunto imediatamente.
+

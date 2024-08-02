@@ -1,0 +1,218 @@
+#!/bin/sh
+#
+# Starts klipper service.
+#
+
+USER_DATA=/usr/data
+PROG=/usr/share/klippy-env/bin/python
+PY_SCRIPT=/usr/share/klipper/klippy/klippy.py
+PRINTER_DATA_DIR=$USER_DATA/printer_data
+PRINTER_CONFIG_DIR=$PRINTER_DATA_DIR/config
+PRINTER_LOGS_DIR=$PRINTER_DATA_DIR/logs
+GCODE_FILES_DIR=$PRINTER_DATA_DIR/gcodes
+PID_FILE=/var/run/klippy.pid
+# default Ender-3 Pro
+PRINTER_MODEL=Ender-3\ Pro
+KLIPPER_CONFIG_DIR=/usr/share/klipper/config/Nebula
+SOURCE_CONFIG_FILE=printer.cfg
+SYS_CONFIG=/usr/data/creality/userdata/config/system_config.json
+
+mcu_reset()
+{
+    [ -z $(pidof klipper_mcu) ] || /etc/init.d/S57klipper_mcu restart
+}
+
+get_cfg_version()
+{
+    local cfg="$1"
+    local version=$(head "$cfg" | grep -w Version | awk '{print $3}')
+    local tmp=""
+
+    if [ "x$version" != "x" ]; then
+        # remove char '.'
+        tmp=${version//./}
+        # remove char 'v' or 'V'
+        tmp=${tmp//v/}
+        version=${tmp//V/}
+        echo "$version"
+    else
+        echo "000"
+    fi
+}    
+
+# Max backup cfg file count: 5
+# file name like : printer.cfg.1, printer.cfg.2
+backup_usr_cfg()
+{
+    local usr_cfg=$1
+
+    if [ -f $usr_cfg ]; then
+        count=$(ls $usr_cfg* | wc -l)
+        i=$count
+        while [ $i -ge 1 ]; do
+            if [ $i -ge 6 ]; then
+                echo "do nothing"
+            elif [ $i -eq 1 ]; then
+                cp $usr_cfg $usr_cfg.1 && sync
+            else
+                cp $usr_cfg.$((i-1)) $usr_cfg.$i && sync
+            fi
+            let i-=1
+        done
+    fi
+}
+
+update_config()
+{
+    local old_cfg="$2"
+    local new_cfg="$1"
+    local tmp_cfg=$PRINTER_CONFIG_DIR/.printer.cfg
+
+    local old_version=$(get_cfg_version "$old_cfg")
+    local new_version=$(get_cfg_version "$new_cfg")
+    echo "old_version: $old_version"
+    echo "new_version: $new_version"
+
+    if [ $new_version -ne $old_version ]; then
+        echo "backup user config"
+        backup_usr_cfg "$old_cfg"
+        echo "update config"
+        cp "$new_cfg" "$tmp_cfg"
+        echo "" >> "$tmp_cfg"
+        cat "$old_cfg" | sed -n '/SAVE_CONFIG/,$p' >> "$tmp_cfg"
+        cp "$tmp_cfg" "$old_cfg" && sync
+    fi
+}
+
+# get printer model
+# first used default Ender-3 Pro
+get_printer_model()
+{
+    local data=
+    local printer_model=
+    if [ -s $SYS_CONFIG ]; then
+        echo "has $SYS_CONFIG"
+        data=$(grep -r model_str $SYS_CONFIG | awk -F: '{print $2}' | grep -o '".*"' | tr -d '"' )
+        echo "get_printer_model: data=$data"
+        # remove prefix "Nebula-"
+        printer_model=${data#*-}
+        # PRINTER_MODEL=${data#*-}
+        echo "get_printer_model: PRINTER_MODEL=$PRINTER_MODEL"
+        IFS=$'\n'
+        for file in $(ls $KLIPPER_CONFIG_DIR)
+        do
+            echo "file=$file"
+            echo "compare"
+            if [ x"$file" = x"$printer_model" ]; then
+                echo "printer_model is $printer_model"
+                PRINTER_MODEL=$printer_model
+            fi
+        done
+    fi
+}
+
+get_source_file()
+{
+    local data=$(head -n 2 $PRINTER_CONFIG_DIR | tail -n 1 | grep -r '# from')
+    echo "get_source_file: data=$data"
+    if [ x"$data" != "x" ]; then
+        SOURCE_CONFIG_FILE=${data:7}
+    fi
+    echo "get_source_file: SOURCE_CONFIG_FILE=$SOURCE_CONFIG_FILE"
+}
+
+copy_config()
+{
+    local model=$(get_sn_mac.sh model)
+    local board=$(get_sn_mac.sh board)
+    local pcba_test=$(get_sn_mac.sh pcba_test)
+
+    case $model in
+        "Nebula Pad")
+            get_printer_model
+            config_dir=Nebula/$PRINTER_MODEL
+            # config_dir=Nebula/Ender3S1
+            # config_dir=Nebula/Ender-3\ Pro
+            gcode_dir=
+            ;;
+
+        *)
+            config_dir=
+            gcode_dir=
+            ;;
+
+    esac
+
+    [ "x${config_dir}" = "x" ] && {
+        echo "config_dir is invalid!"
+        exit 0
+    }
+
+    CONFIG_PATH=/usr/share/klipper/config/${config_dir}
+
+    [ -d "${CONFIG_PATH}" ] || {
+        echo "config_dir is not exist!"
+        exit 0
+    }
+
+    if [ -s $PRINTER_CONFIG_DIR/printer.cfg ]; then
+        # cp -af `ls /usr/share/klipper/config/${config_dir}/*.cfg | grep -v printer.cfg | xargs` $PRINTER_CONFIG_DIR/
+        ls "${CONFIG_PATH}"/*.cfg | grep -v printer.cfg | xargs -I {} cp -af {} $PRINTER_CONFIG_DIR/
+        sync
+
+        # update printer.cfg and keep SAVE_CONFIG section
+
+        update_config "/usr/share/klipper/config/${config_dir}/$SOURCE_CONFIG_FILE" $PRINTER_CONFIG_DIR/printer.cfg
+    else
+        cp -af "${CONFIG_PATH}"/*.cfg $PRINTER_CONFIG_DIR/
+        sync
+    fi
+
+    # overlay printer.cfg for pcba test
+    if [ "x$pcba_test" = "x1" ]; then
+        cp -af $PRINTER_CONFIG_DIR/factory_printer.cfg $PRINTER_CONFIG_DIR/printer.cfg && sync
+        mkdir -p /tmp/creality && touch /tmp/creality/factory_test
+    fi
+}
+
+start() {
+
+        mcu_reset
+
+        [ -d $PRINTER_DATA_DIR ] || mkdir -p $PRINTER_DATA_DIR
+        [ -d $PRINTER_CONFIG_DIR ] || mkdir -p $PRINTER_CONFIG_DIR
+        [ -d $PRINTER_LOGS_DIR ] || mkdir -p $PRINTER_LOGS_DIR
+        [ -d $GCODE_FILES_DIR ] || mkdir -p $GCODE_FILES_DIR
+
+        copy_config
+
+        HOME=/root start-stop-daemon -S -q -b -m -p $PID_FILE \
+                --exec $PROG -- $PY_SCRIPT \
+                $PRINTER_CONFIG_DIR/printer.cfg \
+                -l $PRINTER_LOGS_DIR/klippy.log \
+                -a /tmp/klippy_uds
+}
+stop() {
+        start-stop-daemon -K -q -p $PID_FILE
+}
+restart() {
+        stop
+        start
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        restart
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?

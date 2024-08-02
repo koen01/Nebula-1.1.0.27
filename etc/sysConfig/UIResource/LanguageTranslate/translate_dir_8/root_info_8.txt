@@ -1,0 +1,16 @@
+Root Feragatname ve Risk Uyarısı
+
+    Cihazınızı rootlamadan önce bu feragatnamenin şartlarını dikkatlice okuyun. Bu feragatname, kullanıcıya Root işlevinin kullanımında ortaya çıkabilecek potansiyel riskler ve kullanıcının sistemine etkileri konusunda hatırlatmada bulunur. Root'u kabul edip kullanmaya devam etmeyi seçerseniz, bu kullanıcı sözleşmesi olarak kabul edilmeli ve aşağıdaki tüm şartları onaylamalısınız; kullanıcılar bu Root işlevini kullanarak tüm potansiyel riskleri ve kazara oluşabilecek hasarları kendi sorumlulukları altına alacaklardır.
+
+Risk Uyarısı
+    Rootlama işlemi CE ÜRÜN garantinizi geçersiz kılabilir ve root erişimi elde etmeniz gerekip gerekmediğini iyice düşünmelisiniz.
+
+Rootlama Riskleri
+    Root erişimi elde ettikten sonra, CE ÜRÜN sisteminin en yüksek ayrıcalığını açar ve tüm işletim sistemi nesnelerine erişebilir. Genel yazılımlar Root erişimini kullanarak daha fazla işlev gerçekleştirebilir, ancak kötü amaçlı yazılımlar da sistemlere saldırdığında Root erişimini kullanmak zorundadır. Bu nedenle, bilinmeyen uygulamaların Root izni kullanmasını dikkatlice düşünün.
+    Root erişimi elde ettikten sonra, kullanıcılar CE ÜRÜN'deki sistem dosyalarını değiştirebilir, silebilir, taşıyabilir, kopyalayabilir vb. Tüm bu işlemler CE ÜRÜN sisteminde veya diğer uygulamalarda istisnalara neden olabilir.
+    Root erişimi elde ettikten sonra, kullanıcılar görselleştirme uygulamaları dışında önceden yüklenmiş programları ve birçok önemli sistem bileşenini silebilir. Bu önemli sistem programlarının kaldırılması sistem kararsızlığına ve anormal program davranışına neden olabilir.
+    Root erişimi elde ettikten sonra, kullanıcılar bilinmeyen bazı programlara Root izni verirse, CE ÜRÜN'deki kullanıcı gizlilik bilgileri sızabilir ve özel bilgilerin güvenlik riskine neden olabilir.
+
+Feragatname Kapsamı
+    Root izni kullanıldığında, kullanıcılar ayrıcalık işlemi sürecinde ve root ayrıcalığı elde ettikten sonra tüm root risklerinden sorumlu olmalıdır. Uygulan
+

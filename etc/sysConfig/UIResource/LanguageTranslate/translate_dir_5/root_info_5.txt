@@ -1,0 +1,16 @@
+Avviso e avvertenza di responsabilità radice
+
+    Prima di eseguire il root del tuo dispositivo, leggi attentamente i termini di questo avviso. Questo avviso ricorda all'utente dei potenziali rischi derivanti dall'utilizzo della funzione Root e dell'impatto sul sistema dell'utente. Se scegli di accettare e continuare a utilizzare Root, dovrai considerarlo come un accordo dell'utente e confermare tutti i seguenti termini. Gli utenti si assumeranno tutti i potenziali rischi e la responsabilità per eventuali danni accidentali derivanti dall'utilizzo di questa funzione Root per conto proprio.
+
+Avvertenza sui rischi
+    Il root potrebbe invalidare la garanzia di QUESTO PRODOTTO e dovresti valutare attentamente se hai bisogno di ottenere i permessi di root.
+
+Rischi del root
+    Dopo aver ottenuto l'accesso root, si otterranno i privilegi più elevati del sistema di QUESTO PRODOTTO, che possono accedere a tutti gli oggetti del sistema operativo. Il software generale può svolgere più funzioni utilizzando l'accesso root, ma anche il malware può utilizzare l'accesso root per invadere il sistema. Pertanto, valuta attentamente l'autorizzazione ad applicazioni sconosciute per l'utilizzo dei permessi di root.
+    Dopo aver ottenuto l'accesso root, gli utenti possono modificare, eliminare, spostare, copiare, ecc. i file di sistema di QUESTO PRODOTTO. Tutte queste operazioni potrebbero causare il malfunzionamento del sistema di QUESTO PRODOTTO o delle altre applicazioni.
+    Dopo aver ottenuto l'accesso root, gli utenti possono eliminare programmi preinstallati oltre alle applicazioni di visualizzazione, inclusi anche numerosi componenti di sistema importanti. La rimozione di questi programmi di sistema importanti potrebbe causare l'instabilità del sistema e il comportamento anomalo del programma.
+    Dopo aver ottenuto l'accesso root, se gli utenti autorizzano alcuni programmi sconosciuti a utilizzare i permessi di root, le informazioni sulla privacy dell'utente in QUESTO PRODOTTO potrebbero essere divulgate e comportare un rischio per la sicurezza delle informazioni private.
+
+Ambito di esclusione di responsabilità
+    Durante l'utilizzo dei permessi di root, gli utenti devono assumersi la responsabilità di tutti i rischi del root durante il processo di operazione dei privilegi e dopo aver ottenuto il privilegio di root. Nella misura massima consentita dalla legge applicabile, non saremo responsabili per eventuali danni e rischi derivanti dall'utilizzo o dall'incapacità di utilizzare questo prodotto; Per i problemi o le anomalie che si verificano durante l'utilizzo del prodotto, compresi, ma non limitati a, il malfunzionamento del sistema del prodotto, l'incapacità di eseguire istruzioni, la perdita di file, non promettiamo di fornire servizi di supporto tecnico pertinenti.
+

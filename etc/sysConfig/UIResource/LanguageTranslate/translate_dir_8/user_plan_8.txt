@@ -1,0 +1,34 @@
+Kullanıcı Deneyimi Geliştirme Programı
+
+    Kullanıcılar (bundan sonra “kullanıcılar” veya “siz” olarak anılacaktır), Shenzhen Creality 3D Technology Co., Ltd. (bundan sonra “Creality” olarak anılacaktır) tarafından sunulan Creality ürünleri ve hizmetlerinin (bundan sonra “Creality Hizmetleri” olarak anılacaktır) alıcılarıdır. Lütfen bu belgeyi inceledikten sonra “Kullanıcı Deneyimi Geliştirme Programı” ile ilgili herhangi bir soruşturma için cs@creality.com ile iletişime geçiniz.
+Kullanıcı Deneyimi Geliştirme Programı'na katılarak, Creality ürün kullanımını analiz etme, ürün hizmetlerini geliştirme ve genel kullanıcı deneyimini iyileştirme amacıyla ilgili verileri toplayabilir. Makine, ürün kullanımınıza ilişkin verileri, kameranın yakaladığı hata tanıma geçmişi bilgisi ve makine günlük bilgileri de dahil olmak üzere çeşitli bilgileri toplayacaktır. Bu verilerin “Gizlilik Politikası’nda” açıklanan detayları içerebileceğini unutmayın.
+Kullanıcılar, makine ekranında görünen yardım seçeneklerine erişerek programın kullanımına dahil olma veya kullanımını sonlandırma konusunda serbest iradeye sahiptir. Kullanıcılar Katıl seçimi yaparak Kullanıcı Deneyimi Geliştirme Programı'na katılmayı tercih edebilirler. Eğer katılmamayı tercih ederseniz, Kullanıcı Deneyimi Geliştirme Programı’ndan çıkabilirsiniz.
+1.	Veri Toplama
+Sizlere daha iyi ürün veya hizmet sunmak amacıyla, bu programa katılmak için izin verdiğinizde, Creality aşağıdaki amaçlar kapsamında verileri toplayacaktır:
+Ürün Tanılama
+	Cihazın MAC adresi, SN numarası, DN numarası, ülke/bölge bilgisi, sistem versiyonu, cihaz modeli, sistem bilgileri dahil cihaz bilgileri.
+.
+	Ağ bilgileri, sinyal gücü dahil cihaz bağlantı bilgileri.
+	Güç açma/kapama verileri, sensör verileri dahil cihaz durum bilgileri.
+	Hata meydana geldikten sonra kamranın durumu, kameranın görüntü bilgileri dahil cihazın kamera bilgileri.
+	Sistem ve cihaz anormallikleri meydana geldikten sonra ilgili günlük bilgileri dahil cihaz ve ilişkili fonksiyon kullanım günlükleri.
+Ürün Fonksiyonu Kullanımı ve Kullanılabilirlik Analizi
+	Ürün fonksiyon tuşlarının kaç defa tıklandığı, fonksiyon kullanım frekansı gibi etkileşim verileri.
+	Ekran sayfasında bekleme süresi gibi fonksiyon gösterme bilgileri.
+	Ürün fonksiyon seçeneklerinin durumu gibi yapılandırma seçim bilgileri.
+	Bekleme süresi, yazdırma süresi, yazdırma görevi süresi ve diğer ilgili bilgiler gibi fonksiyon ve ürün kullanımı bilgileri.
+2.	Veri Kullanımı
+Creality, ilgili ulusal yasalara ve düzenlemelere sıkı bir şekilde uyacağını temin eder. Creality toplanan bilgi ve içeriğin en üst düzeyde gizliliğini sağlayacaktır. Bu veriler yalnızca ürün kalitesini artırmak ve hizmet sunmak amacıyla kullanılacak ve başka bir nedenle üçüncü taraflarla paylaşılmayacaktır. Bu bilgilerin sağlanmaması, normal kullanımınızı etkilemeyecektir; ancak sistemdeyken kullanıcı deneyimini artırabilecek herhangi bir sorunu çözme olanağımız olmayacaktır.
+Aşağıda bilgilerinizi nasıl kullandığımıza ilişkin detaylı örnekler verilmiştir:
+	Yazdırma sırasında CPU kullanımının ve hafıza kullanımının analiz edilmesi gibi cihaz performansının optimize edilmesi.
+	Satış sonrası hizmeti geliştirmek için yazdırma ve kameradan alınan geçmiş verilerden hata tanımlama işlemleri sırasında hata bilgilerinin analiz edilmesi ve ürün kullanımı sırasında hangi arızaların meydana geldiğinin analiz edilmesi gibi arıza bilgilerinin analiz edilmesi.
+	Kullanıcı makine fonksiyonlarının açık/kapalı durumlarının analiz edilmesi, deneyimin geliştirilmesi için bu fonksiyonun fonksiyonu sürekli geliştirmek için ne sıklıkla kullanıldığı bilgisinin belirlenmesi gibi işlemlerle kullanıcı deneyiminin geliştirilmesi.
+3.	Veri Depolama Yeri
+Creality’nin şu anda Çin ve Amerika Birleşik Devletleri’nde veri merkezleri bulunmaktadır.
+	Yürürlükte sınır ötesi veri taşımaya izin veren yasalar tarafından aksi belirtilmedikçe, Çin ana karasında toplanan ve oluşturulan bilgileri Çin ana karasındaki veri merkezlerinde depolayacağız.
+	Yürürlükte sınır ötesi veri taşımaya izin veren yasalar tarafından aksi belirtilmedikçe, Çin ana karası dışındaki bölgelerde toplanan ve oluşturulan bilgileri Amerika Birleşik Devletleri’ndeki veri merkezlerinde depolayacağız.
+4.	Veri Depolama Süresi
+Kişisel bilgileriniz, yalnızca veri toplama amaçlarını yerine getirmek için gerekli olan süre boyunca veya ilgili yasalar ve düzenlemeler tarafından gerekli görülen süre boyunca depolanacaktır. Herhangi bir zamanda programdan çıkılması durumunda veya programda yer aldığınız süre boyunca sizden toplamış olduğumuz verilerin silinmesi yönünde talepte bulunabilirsiniz.
+5.	Haklarınız
+Programa dahil olduktan sonra, sizinle ilgili topladığımız veri bilgileri, yönetim süreçleri veya silme işlemleri hakkında sorularınız olduğunda veya programdan çıkmak istediğinizde ya da topladığımız ve işleme aldığımız verilerle ilgili talepleriniz olduğunda istediğiniz zaman bizimle cs@creality.com adresinden iletişime geçebilirsiniz ve taleplerinizi en kısa sürede işleme alacağız.
+

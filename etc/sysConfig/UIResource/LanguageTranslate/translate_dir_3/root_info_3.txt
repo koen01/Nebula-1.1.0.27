@@ -1,0 +1,16 @@
+Aviso de exención de responsabilidad y advertencia de riesgos de root
+
+    Antes de rootear su dispositivo, lea los términos de esta exención de responsabilidad detenidamente. Esta exención de responsabilidad recuerda al usuario los posibles riesgos involucrados en el uso de la función de root y el impacto en el sistema del usuario. Si decide aceptar y continuar usando Root, se considerará como el acuerdo del usuario y confirmará todos los términos a continuación. Los usuarios asumirán todos los posibles riesgos y la responsabilidad por los daños accidentales al utilizar esta función de root para sí mismos.
+
+Advertencia de riesgo
+    Rootear puede anular la garantía de ESTE PRODUCTO, y debe considerar cuidadosamente si necesita obtener permisos de root.
+
+Riesgos de root
+    Después de obtener acceso root, se abrirá el privilegio más alto del sistema de ESTE PRODUCTO, lo que permite acceder a todos los objetos del sistema operativo. El software general puede lograr más funciones utilizando el acceso root, pero el malware también debe utilizar el acceso root al invadir el sistema. Por lo tanto, considere cuidadosamente otorgar permisos de root a aplicaciones desconocidas.
+    Después de obtener acceso root, los usuarios pueden modificar, eliminar, mover, copiar, etc. los archivos del sistema de ESTE PRODUCTO. Todas estas operaciones pueden causar excepciones en el sistema de ESTE PRODUCTO u otras aplicaciones.
+    Después de obtener acceso root, los usuarios pueden eliminar programas preinstalados además de las aplicaciones de visualización, lo que incluye también varios componentes importantes del sistema. Eliminar estos programas importantes del sistema puede causar inestabilidad del sistema y un comportamiento anormal del programa.
+    Después de obtener acceso root, si los usuarios otorgan permisos de root a algunos programas desconocidos, la información de privacidad del usuario en ESTE PRODUCTO puede filtrarse y resultar en un riesgo de seguridad para la información privada.
+
+Ámbito de la exención de responsabilidad
+    Al utilizar el permiso de root, los usuarios deben asumir la responsabilidad de todos los riesgos de root durante el proceso de operación de privilegios y después de obtener el privilegio de root. En la medida máxima permitida por la ley aplicable, no seremos responsables de ningún daño y riesgo derivados del uso o la incapacidad de utilizar este producto; Para problemas o anormalidades que ocurran durante el uso del producto, incluidos, entre otros, fallos del sistema del producto, incapacidad para ejecutar instrucciones y pérdida de archivos, no prometemos proporcionar servicios de soporte técnico relevantes.
+

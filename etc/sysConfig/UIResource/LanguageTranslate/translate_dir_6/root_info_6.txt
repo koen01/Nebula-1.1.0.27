@@ -1,0 +1,16 @@
+Aviso de Isenção de Responsabilidade e Risco da Raiz
+
+    Antes de fazer root no seu dispositivo, leia atentamente os termos desta declaração de isenção de responsabilidade. Esta declaração lembra o usuário dos riscos potenciais envolvidos no uso da função de root e do impacto no sistema do usuário. Se você optar por aceitar e continuar usando o root, isso deve ser tratado como o acordo do usuário e confirmar todos os termos abaixo, os usuários assumirão todos os riscos potenciais e a responsabilidade por danos acidentais pelo uso desta função de root para si próprios.
+
+Aviso de Risco
+    Fazer root pode anular a garantia deste PRODUTO e você deve considerar cuidadosamente se precisa obter permissão de root.
+
+Riscos do Rooting
+    Após obter acesso ao root, ele abrirá o privilégio mais alto do sistema deste PRODUTO, que pode acessar todos os objetos do sistema operacional. O software geral pode obter mais funções usando o acesso ao root, mas o malware também precisa usar o acesso ao root ao invadir o sistema. Portanto, considere cuidadosamente autorizar aplicativos desconhecidos a usar a permissão de root.
+    Após obter acesso ao root, os usuários podem modificar, excluir, mover, copiar, etc. os arquivos do sistema neste PRODUTO. Todas essas operações podem causar exceções no sistema deste PRODUTO ou em outros aplicativos.
+    Após obter acesso ao root, os usuários podem excluir o programa pré-instalado, além de aplicativos de visualização, e inclui também vários componentes importantes do sistema. Remover esses programas importantes do sistema pode causar instabilidade no sistema e comportamento anormal do programa.
+    Após obter acesso ao root, se os usuários autorizarem alguns programas desconhecidos a usar a permissão de root, as informações de privacidade do usuário neste PRODUTO podem vazar e resultar em um risco de segurança das informações privadas.
+
+Escopo da Isenção de Responsabilidade
+    Ao usar a permissão de root, os usuários devem assumir a responsabilidade por todos os riscos de root durante o processo de operação de privilégio e após obter o privilégio de root. Na medida máxima permitida pela lei aplicável, não seremos responsáveis por quaisquer danos e riscos decorrentes do uso ou incapacidade de usar este produto; Para problemas ou anormalidades que ocorram durante o uso do produto, incluindo, mas não se limitando a falha do sistema do produto, incapacidade de executar instruções, perda de arquivos, não prometemos fornecer serviços de suporte técnico relevantes.
+

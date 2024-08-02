@@ -1,0 +1,33 @@
+Programma di miglioramento dell'esperienza utente
+
+    Shenzhen Creality 3D Technology Co., Ltd. (di seguito denominata "Creality") fornisce prodotti e servizi Creality (di seguito denominati "Servizi Creality") agli utenti (di seguito denominati "utenti" o "voi"). Se hai domande su questo "Programma di miglioramento dell'esperienza utente", contatta cs@creality.com dopo aver letto questo documento.
+La partecipazione al programma di miglioramento dell'esperienza utente consente a Creality di raccogliere informazioni pertinenti per analizzare l'uso dei prodotti, migliorare i servizi dei prodotti e migliorare l'esperienza utente. Il dispositivo accederà alle informazioni relative all'utilizzo del prodotto, come le informazioni sulla cronologia del riconoscimento degli errori da parte della fotocamera e le informazioni di registro del dispositivo, che possono includere le informazioni descritte nella "Informativa sulla privacy".
+Gli utenti sono liberi di scegliere di partecipare o di ritirarsi dal programma attraverso le opzioni della Guida sulla schermata del dispositivo. La scelta di aderire significa che gli utenti scelgono di partecipare al Programma di miglioramento dell'esperienza utente. Se si sceglie di non aderire, si verrà ritirati dal Programma di miglioramento dell'esperienza utente.
+1.	Raccolta dati
+Al fine di fornire prodotti o servizi migliori, con l'autorizzazione a partecipare a questo programma, Creality raccoglierà i dati dell’utente per i seguenti scopi:
+Diagnosi del prodotto
+	Informazioni sul dispositivo, tra cui indirizzo MAC del dispositivo, numero SN, numero DN, paese/regione, versione del sistema, modello del dispositivo, informazioni sul sistema.
+	Informazioni sulla connessione del dispositivo, incluse informazioni di rete e potenza del segnale.
+	Informazioni sullo stato del dispositivo, compresi dati di accensione/spegnimento, dati del sensore.
+	Informazioni sulla fotocamera del dispositivo, compreso lo stato della fotocamera, informazioni sull'immagine della fotocamera dopo che si sono verificati errori.
+	Registri sull'utilizzo del dispositivo e delle relative funzioni, comprese le informazioni di registro pertinenti dopo che si sono verificate anomalie del sistema e del dispositivo.
+Utilizzo delle funzioni del prodotto e analisi dell'usabilità
+	Dati di interazione, come il numero di volte in cui i pulsanti funzione del prodotto vengono premuti, la frequenza di utilizzo della funzione.
+	Informazioni sulla visualizzazione delle funzioni, come il tempo di permanenza della schermata.
+	Informazioni sulla selezione della configurazione, ad esempio lo stato delle opzioni di funzione del prodotto.
+	Informazioni sulla funzione e sull'utilizzo del prodotto, come la durata dello standby, la durata della stampa, il tempo dell'attività di stampa e altre informazioni pertinenti.
+2.	Utilizzo dei dati
+Creality si impegna a rispettare rigorosamente le leggi e le normative nazionali pertinenti. Creality manterrà strettamente confidenziali le informazioni e i contenuti raccolti, che saranno utilizzati esclusivamente per migliorare la qualità dei prodotti e i servizi offerti e non saranno forniti a società terze estranee a questo scopo. Se l'utente non fornisce queste informazioni, ciò non influirà sul suo normale utilizzo, ma non saremo in grado di risolvere eventuali problemi che potrebbero migliorare l'esperienza dell'utente durante tale utilizzo.
+Di seguito sono riportati alcuni esempi dettagliati di come utilizziamo le informazioni dell’utente:
+	Ottimizza le prestazioni del dispositivo, ad esempio analizzando l'utilizzo della CPU e della memoria durante la stampa.
+	Analizzare il contenuto dei guasti per migliorare l'assistenza post-vendita, ad esempio analizzare le informazioni sugli errori durante la stampa e le informazioni sulla cronologia del riconoscimento degli errori dalla fotocamera, e condurre un'analisi dettagliata dei guasti verificatisi durante l'uso del prodotto.
+	Migliorare l'esperienza dell'utente, ad esempio analizzando lo stato di accensione/spegnimento delle funzioni della macchina dell'utente, determinando il tasso di utilizzo di questa funzione per ottimizzare continuamente questa funzione per migliorare l'esperienza.
+3.	Posizione di archiviazione dei dati
+Creality attualmente dispone di data center in Cina e negli Stati Uniti.
+	Conserveremo le informazioni raccolte e generate nella Cina continentale in data center nella Cina continentale, salvo quanto diversamente previsto dalle leggi applicabili che consentono il trasporto oltre confine.
+	Conserveremo le informazioni raccolte e generate in regioni diverse dalla Cina continentale in data center negli Stati Uniti, salvo quanto diversamente previsto dalle leggi applicabili che consentono il trasporto oltre confine.
+4.	Periodo di conservazione dei dati
+Conserveremo le informazioni personali dell'utente solo per la durata del servizio necessario a conseguire gli scopi di raccolta dei dati o come richiesto dalle leggi e dai regolamenti applicabili. Durante questo periodo, l'utente ha il diritto di chiedere di recedere dal programma o di richiedere che i dati raccolti vengano eliminati in qualsiasi momento.
+5.	Diritti dell'utente
+Dopo aver aderito al programma, in qualsiasi momento in cui sia necessario informarsi, gestire o eliminare le informazioni sui dati che abbiamo raccolto su di te, o se desideri ritirarti da questo programma o hai richieste relative ai dati che raccogliamo ed elaboriamo, puoi contattarci all'indirizzo , gestiremo prontamente le tue richieste.
+

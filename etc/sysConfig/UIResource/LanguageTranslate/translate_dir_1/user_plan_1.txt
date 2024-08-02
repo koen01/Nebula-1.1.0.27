@@ -1,0 +1,33 @@
+User Experience Improvement Program
+
+    Shenzhen Creality 3D Technology Co., Ltd. (hereinafter referred to as "Creality") provides Creality products and services (hereinafter referred to as "Creality Services") to users (hereinafter referred to as "users" or "you"). If you have any questions about this "User Experience Improvement Program," please contact cs@creality.com after reading this document.
+Participation in the User Experience Improvement Program allows Creality to collect relevant information to analyze the use of products, improve product services, and enhance the user experience. The machine will access information related to your product usage, such as error recognition history information from the camera and machine log information, which may include information described in the "Privacy Policy."
+Users are free to choose to join or withdraw from the program through the help options on the machine screen. Choosing to join means that users choose to participate in the User Experience Improvement Program. If you choose not to join, you can withdraw from the User Experience Improvement Program.
+    1. Data Collection
+In order to provide you with better products or services, with your authorization to participate in this program, Creality will collect data for the following purposes:
+Product Diagnosis
+    • Device information, including device MAC address, SN number, DN number, country/region, system version, device model, system information.
+    • Device connection information, including network information, signal strength.
+    • Device status information, including power on/off data, sensor data.
+    • Device camera information, including camera status, camera image information after errors occur.
+    • Device and related function usage logs, including relevant log information after system and device anomalies occur.
+Product Function Usage and Usability Analysis
+    • Interaction data, such as the number of times product function buttons are clicked, function usage frequency.
+    • Function display information, such as screen page dwell time.
+    • Configuration selection information, such as the status of product function options.
+    • Function and product usage information, such as standby duration, printing duration, printing task time, and other relevant information.
+    2. Data Usage
+Creality promises to strictly comply with relevant national laws and regulations. Creality will keep the collected information and content strictly confidential, which will only be used to improve product quality and enhance product services, and will not be provided to third-party companies unrelated to this purpose. If you do not provide this information, it will not affect your normal use, but we will be unable to address any issues that may improve the user experience during your use.
+Below are detailed examples of how we use your information:
+    • Optimize device performance, such as analyzing CPU usage and memory usage during printing.
+    • Analyze fault content to improve after-sales service, such as analyzing error information during printing and error recognition history information from the camera, and conducting a detailed analysis of what faults occurred during product use.
+    • Improve user experience, such as analyzing the on/off status of user machine functions, determining the usage rate of this function to continuously optimize this function to improve the experience.
+    3. Data Storage Location
+Creality currently has data centers in China and the United States.
+    • We will store the information collected and generated in mainland China in data centers in mainland China, except as otherwise provided by applicable laws allowing cross-border transportation.
+    • We will store the information collected and generated in regions other than mainland China in data centers in the United States, except as otherwise provided by applicable laws allowing cross-border transportation.
+    4. Data Storage Period
+We will only retain your personal information for the duration of service necessary to achieve the data collection purposes, or as required by applicable laws and regulations. During this period, you have the right to request to withdraw from the program or request that we delete the data collected from you at any time.
+    5. Your Rights
+After you join the program, at any time when you need to inquire about, manage, or delete the data information we have collected about you, or if you wish to withdraw from this program or have any requests related to the data we collect and process, you can contact us at cs@creality.com, and we will promptly handle it.
+

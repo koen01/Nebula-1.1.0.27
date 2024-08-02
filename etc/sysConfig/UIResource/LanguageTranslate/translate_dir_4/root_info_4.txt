@@ -1,0 +1,16 @@
+Clause de non-responsabilité et avertissement des risques de root
+
+    Avant de rooter votre appareil, veuillez lire attentivement les termes de cette clause de non-responsabilité. Cette clause de non-responsabilité rappelle à l'utilisateur les risques potentiels liés à l'utilisation de la fonction Root et les impacts sur le système de l'utilisateur. Si vous choisissez d'accepter et de continuer à utiliser Root, cela sera considéré comme un accord de l'utilisateur et vous confirmez tous ces termes ci-dessous, les utilisateurs assumeront tous les risques potentiels et la responsabilité des dommages accidentels en utilisant cette fonction Root pour eux-mêmes.
+
+Avertissement des risques
+    Le rootage peut annuler la garantie de CE PRODUIT, et vous devez considérer attentivement si vous avez besoin d'obtenir une autorisation de root.
+
+Risques de rootage
+    Après avoir obtenu un accès root, cela ouvrira le plus haut niveau de privilège du système CE PRODUIT, ce qui peut accéder à tous les objets du système d'exploitation. Les logiciels généraux peuvent réaliser plus de fonctions en utilisant l'accès root, mais les logiciels malveillants peuvent également utiliser l'accès root lorsqu'ils envahissent le système. Veuillez donc considérer attentivement l'autorisation d'applications inconnues à utiliser l'autorisation root.
+    Après avoir obtenu un accès root, les utilisateurs peuvent modifier, supprimer, déplacer, copier, etc. les fichiers système dans CE PRODUIT. Toutes ces opérations peuvent entraîner des exceptions du système CE PRODUIT ou d'autres applications.
+    Après avoir obtenu un accès root, les utilisateurs peuvent supprimer les programmes préinstallés en plus des applications de visualisation, et cela inclut également plusieurs composants importants du système. La suppression de ces programmes importants du système peut causer une instabilité du système et un comportement anormal du programme.
+    Après avoir obtenu un accès root, si les utilisateurs autorisent certains programmes inconnus à utiliser l'autorisation root, les informations de confidentialité de l'utilisateur dans CE PRODUIT peuvent être divulguées et entraîner un risque de sécurité des informations privées.
+
+Portée de la clause de non-responsabilité
+    Lors de l'utilisation de l'autorisation de root, les utilisateurs doivent assumer la responsabilité de tous les risques de root lors du processus d'exploitation des privilèges et après avoir obtenu le privilège de root. Dans toute la mesure permise par la loi applicable, nous ne serons pas responsables des dommages et risques découlant de l'utilisation ou de l'incapacité d'utiliser ce produit ; Pour les problèmes ou anomalies survenant lors de l'utilisation du produit, y compris, sans s'y limiter, les défaillances du système du produit, l'impossibilité d'exécuter des instructions et la perte de fichiers, nous ne promettons pas de fournir des services de support technique pertinents.
+

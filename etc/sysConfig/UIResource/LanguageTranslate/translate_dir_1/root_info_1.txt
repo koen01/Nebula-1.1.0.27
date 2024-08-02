@@ -1,0 +1,16 @@
+Root Disclaimer and Risk Warning
+
+    Before rooting your device, please read the terms of this disclaimer carefully. This disclaimer reminds the user of the potential risks involved in using the Root function and the impact on the user's system. If you choose to accept and continue using Root, it should be treated as the user agreement and confirm all these terms below, users will take all potential risks and accidental damage responsibility by using this Root function for their own.
+
+Risk Warning
+    Rooting may void your THIS PRODUCT warranty, and you should consider carefully whether you need to gain root permission.
+
+Rooting Risks
+    After obtaining Root access, it will open the THIS PRODUCT system's highest privilege, which can access all operating system objects. General software can achieve more functions by using Root access, but the malware also has to use Root access when invading the system. So please consider carefully authorizing unknown applications to use Root permission.
+    After obtaining Root access, users can modify, delete, move, copy, etc. the system files in the THIS PRODUCT. All these operations may cause the THIS PRODUCT system or other application exceptions. 
+    After obtaining Root access, users can delete the pre-installed program in addition to visualization applications, and also includes a number of important system components. Removing these important systems programs might cause system instability, and the program is behaving abnormally.
+    After obtaining Root access., if users authorize some unknown programs to use Root permission, the user privacy information in the THIS PRODUCT may leak and result in a security risk of private information.
+    
+Disclaimer Scope
+    When using the Root permission, users should take responsibility for all rooting risks during the privilege operation process and after gaining the root privilege. To the maximum extent permitted by applicable law, we shall not be liable for any damages and risks arising from the use or inability to use this product; For problems or abnormalities that occur during the use of the product, including but not limited to product system failure, inability to execute instructions, loss of files, we do not promise to provide relevant technical support services.
+

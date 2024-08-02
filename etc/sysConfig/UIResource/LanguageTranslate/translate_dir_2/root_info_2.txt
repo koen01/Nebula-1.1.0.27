@@ -1,0 +1,17 @@
+Root-Haftungsausschluss und Risikowarnung
+
+    Bitte lesen Sie vor dem Rooten Ihres Geräts die Bedingungen dieses Haftungsausschlusses sorgfältig durch. Dieser Haftungsausschluss erinnert den Benutzer an die potenziellen Risiken bei Verwendung der Root-Funktion und deren Auswirkungen auf das System des Benutzers. Wenn Sie sich dafür entscheiden, Root zu akzeptieren und fortzusetzen, sollte dies als Benutzervereinbarung behandelt und alle unten aufgeführten Bedingungen bestätigt werden. Benutzer tragen alle potenziellen Risiken und die Verantwortung für versehentliche Schäden durch die Verwendung dieser Root-Funktion für sich selbst.
+
+Risikowarnung
+    Das Rooten kann Ihre GARANTIE FÜR DIESES PRODUKT ungültig machen, und Sie sollten sorgfältig überlegen, ob Sie Root-Berechtigungen benötigen.
+    
+Risiken des Rootens
+    Nach dem Erhalt des Root-Zugriffs wird der höchste Zugriff auf das System dieses PRODUKTS geöffnet, der auf alle Betriebssystemobjekte zugreifen kann. Allgemeine Software kann durch Verwendung des Root-Zugriffs weitere Funktionen erreichen, aber auch Malware muss den Root-Zugriff verwenden, wenn sie in das System eindringt. Bitte überlegen Sie sorgfältig, ob Sie unbekannten Anwendungen die Verwendung der Root-Berechtigung erlauben möchten.
+    Nach dem Erhalt des Root-Zugriffs können Benutzer Systemdateien in diesem PRODUKT ändern, löschen, verschieben, kopieren usw. Alle diese Operationen können dazu führen, dass das System dieses PRODUKTS oder andere Anwendungen Ausnahmen verursachen.
+    Nach dem Erhalt des Root-Zugriffs können Benutzer das vorinstallierte Programm neben den Visualisierungsanwendungen löschen und auch mehrere wichtige Systemkomponenten umfassen. Das Entfernen dieser wichtigen Systemprogramme kann zu Systeminstabilität und abnormalen Programmverhalten führen.
+    Nach dem Erhalt des Root-Zugriffs können die Benutzer, wenn sie einigen unbekannten Programmen die Verwendung der Root-Berechtigung gestatten, die Benutzerdaten in diesem PRODUKT preisgeben und ein Sicherheitsrisiko für private Informationen verursachen.
+
+Haftungsausschlussumfang
+    Bei Verwendung der Root-Berechtigung tragen Benutzer die Verantwortung für alle Root-Risiken während des Privilegierungsprozesses und nach Erhalt des Root-Privilegs. Soweit gesetzlich zulässig, haften wir nicht für Schäden und Risiken, die sich aus der Verwendung oder Unfähigkeit zur Verwendung dieses Produkts ergeben. Für Probleme oder Abweichungen, die während der Verwendung des Produkts auftreten, einschließlich, aber nicht beschränkt auf Ausfall des Produktsystems, Nichtausführbarkeit von Anweisungen, Dateiverlust, versprechen wir nicht, entsprechende technische Unterstützungsdienste bereitzustellen.
+
+

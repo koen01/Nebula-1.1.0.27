@@ -1,0 +1,16 @@
+{
+   "count": 10, 
+   "language list": [
+   	{"name": "中文", "index": 0}, 
+   	{"name": "English", "index": 1}, 
+   	{"name": "Deutsch", "index": 2}, 
+   	{"name": "Español", "index": 3}, 
+   	{"name": "Français", "index": 4}, 
+   	{"name": "Italiano", "index": 5}, 
+   	{"name": "Português", "index": 6}, 
+   	{"name": "Русский", "index": 7},
+   	{"name": "Turkish", "index": 8},
+   	{"name": "日本語", "index": 9}
+   ]
+}
+
