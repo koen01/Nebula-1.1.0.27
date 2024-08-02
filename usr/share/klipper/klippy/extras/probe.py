@@ -24,7 +24,6 @@ class PrinterProbe:
         self.y_offset = config.getfloat('y_offset', 0.)
         self.z_offset = config.getfloat('z_offset')
         self.z_offset_calibrate = 0
-        self.z_offset_change_flag = False
         self.probe_calibrate_z = 0.
         self.multi_probe_pending = False
         self.last_state = False
@@ -220,7 +219,7 @@ class PrinterProbe:
     def get_status(self, eventtime):
         return {'last_query': self.last_state,
                 'last_z_result': self.last_z_result,
-                'z_offset': self.z_offset_calibrate if self.z_offset_change_flag else self.z_offset}
+                'z_offset': self.z_offset_calibrate if self.z_offset_calibrate else self.z_offset}
     cmd_PROBE_ACCURACY_help = "Probe Z-height accuracy at current XY position"
     def cmd_PROBE_ACCURACY(self, gcmd):
         speed = gcmd.get_float("PROBE_SPEED", self.speed, above=0.)
@@ -304,7 +303,6 @@ class PrinterProbe:
                 % (self.name, new_calibrate))
             configfile.set(self.name, 'z_offset', "%.3f" % (new_calibrate,))
             self.z_offset_calibrate = new_calibrate
-            self.z_offset_change_flag = True
     cmd_Z_OFFSET_APPLY_PROBE_help = "Adjust the probe's z_offset"
 
 # Endstop wrapper that enables probe specific features

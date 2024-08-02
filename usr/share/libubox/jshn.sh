@@ -168,20 +168,10 @@ json_add_double() {
 	_json_add_generic double "$1" "$2" "$cur"
 }
 
-json_add_null() {
-	local cur
-	_json_get_var cur JSON_CUR
-	_json_add_generic null "$1" "" "$cur"
-}
-
 # functions read access to json variables
 
 json_load() {
 	eval "`jshn -r "$1"`"
-}
-
-json_load_file() {
-	eval "`jshn -R "$1"`"
 }
 
 json_dump() {
@@ -287,29 +277,4 @@ json_is_a() {
 
 	json_get_type type "$1"
 	[ "$type" = "$2" ]
-}
-
-json_for_each_item() {
-	[ "$#" -ge 2 ] || return 0
-	local function="$1"; shift
-	local target="$1"; shift
-	local type val
-
-	json_get_type type "$target"
-	case "$type" in
-		object|array)
-			local keys key
-			json_select "$target"
-			json_get_keys keys
-			for key in $keys; do
-				json_get_var val "$key"
-				eval "$function \"\$val\" \"\$key\" \"\$@\""
-			done
-			json_select ..
-		;;
-		*)
-			json_get_var val "$target"
-			eval "$function \"\$val\" \"\" \"\$@\""
-		;;
-	esac
 }

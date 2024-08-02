@@ -120,7 +120,6 @@ start_uvc()
 
 stop_uvc()
 {
-    local count=0
     case $1 in
         main-video* | sub-video*)
             echo_console "stop cam_app service for $1 : "
@@ -135,14 +134,8 @@ stop_uvc()
                 do
                     if [ -d /proc/$(cat /var/run/$1.pid) ]; then
                         sleep 0.2
-                        let count+=1
                     else
                         break
-                    fi
-                    # time out 3s, then send kill signal to process
-                    if [ $count -gt $TIME_OUT_CNT ]; then
-                        kill -9 $(cat /var/run/$1.pid)
-                        sleep 0.5
                     fi
                 done
 

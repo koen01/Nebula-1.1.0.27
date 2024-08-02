@@ -1,0 +1,30 @@
+#!/bin/sh
+# S50non_creality_webcam - by destinal
+# Start up mjpg-streamer on port 8080 for non-creality cameras (where cam_app doesn't autostart)
+
+case "$1" in
+  start)
+    V4L_DEV=$(v4l2-ctl --list-devices|grep -A1 usb|tail -1|sed 's/^[[:space:]]*//g')
+    CREALITY_CAMS=$(v4l2-ctl --list-devices|grep CREALITY|wc -l)
+    if [ "x$V4L_DEV" = "x" -o $CREALITY_CAMS -gt 0 ]; then
+      echo "No third party webcams found or we have a creality camera. Bailing!"
+      exit 1
+    fi
+
+    # Otherwise we're all set up and have a device ID
+    mjpg_streamer -b -i "/usr/lib/mjpg-streamer/input_uvc.so -d $V4L_DEV" -o "/usr/lib/mjpg-streamer/output_http.so -p 8080"
+    ;;
+  stop)
+    killall mjpg_streamer
+    ;;
+  restart|reload)
+    "$0" stop
+    "$0" start
+    ;;
+  *)
+    echo "Usage:"
+    echo "    $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit $?

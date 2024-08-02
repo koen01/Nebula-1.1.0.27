@@ -47,7 +47,6 @@ class VirtualSD:
         self.do_resume_status = False
         self.eepromWriteCount = 1
         self.fan_state = ""
-        self.toolhead_moved = False
         self.gcode_layer_path = "/usr/data/creality/userdata/config/gcode_layer.json"
         self.user_print_refer_path = "/usr/data/creality/userdata/config/user_print_refer.json"
         self.print_file_name_path = "/usr/data/creality/userdata/config/print_file_name.json"
@@ -61,8 +60,8 @@ class VirtualSD:
         self.slow_count = 0
         self.speed_factor = 1.0/60.0
         self.run_dis = 0.0
+        self.print_history_file_path = "/usr/data/creality/userdata/config/print_history.json"
         self.print_id = ""
-        self.cur_print_data = {}
     def handle_shutdown(self):
         if self.work_timer is not None:
             self.must_pause_work = True
@@ -161,8 +160,6 @@ class VirtualSD:
         from subprocess import call
         if os.path.exists(self.print_file_name_path):
             os.remove(self.print_file_name_path)
-        if os.path.exists(self.gcode.exclude_object_info):
-            os.remove(self.gcode.exclude_object_info)
         call("sync", shell=True)
         try:
             power_loss_switch = False
@@ -177,10 +174,6 @@ class VirtualSD:
         except Exception as err:
             pass
         self.update_print_history_info(only_update_status=True, state="cancelled")
-        if self.print_id and self.cur_print_data:
-            reportInformation("key701", data=self.cur_print_data)
-            self.print_id = ""
-            self.cur_print_data = {}
     # G-Code commands
     def cmd_error(self, gcmd):
         raise gcmd.error("SD write not supported")
@@ -218,6 +211,7 @@ class VirtualSD:
             filename = filename[1:]
         self._load_file(gcmd, filename, check_subdirs=True)
         self.do_resume()
+        reportInformation("key600", data={"filename": filename})
         self.record_print_history(str(self.current_file.name))
 
     def record_print_history(self, file_path=""):
@@ -241,19 +235,39 @@ class VirtualSD:
                     "status": "in_progress",
                     "total_duration": 0,
                 }
-                result = {"count": 1, "jobs": [data]}
-                self.cur_print_data = result
-                return
+                if os.path.exists(self.print_history_file_path):
+                    ret = {}
+                    try:
+                        with open(self.print_history_file_path, "r") as f:
+                            ret = json.loads(f.read())
+                            if ret["count"] == 10:
+                                del ret["jobs"][0]
+                            else:
+                                ret["count"] += 1
+                            ret["jobs"].append(data)
+                        with open(self.print_history_file_path, "w") as f:
+                            f.write(json.dumps(ret))
+                            f.flush()
+                    except Exception as err:
+                        logging.error(err)
+                        if os.path.exists(self.print_history_file_path):
+                            os.remove(self.print_history_file_path)
+                else:
+                    result = {"count": 1, "jobs": [data]}
+                    with open(self.print_history_file_path, "w") as f:
+                        f.write(json.dumps(result))
+                        f.flush()
         except Exception as err:
             logging.error(err)
 
     def update_print_history_info(self, only_update_status=False, state="", error_msg=""):
-        if self.print_id:
+        if os.path.exists(self.print_history_file_path) and self.print_id:
             ret = {}
             try:
                 update_obj = None
                 index = -1
-                ret = self.cur_print_data
+                with open(self.print_history_file_path, "r") as f:
+                    ret = json.loads(f.read())
                 if ret and ret.get("jobs", []):
                     print_list = ret.get("jobs", [])
                     for obj in print_list:
@@ -270,17 +284,24 @@ class VirtualSD:
                             if error_msg:
                                 update_obj["error_msg"] = error_msg
                             update_obj["status"] = state
-                            if only_update_status and self.print_id and (state == "error" or state == "completed") and os.path.exists("/tmp/camera_main"):
-                                update_obj["jpg_filename"] = "%s.jpg" % self.print_id
-                                time.sleep(0.5)
-                                reportInformation("key608", data={"print_id": self.print_id})
+                            # if only_update_status and (state == "error" or state == "completed") and os.path.exists("/tmp/camera_main"):
+                            #     from subprocess import call
+                            #     net_state = call("ping -c 2 -w 2 api.crealitycloud.com > /dev/null 2>&1", shell=True)
+                            #     if not net_state:
+                            #         update_obj["jpg_filename"] = "%s.jpg" % self.print_id
+                            #         time.sleep(0.2)
+                            #         reportInformation("key608", data={"print_id": self.print_id})
 
                 if index != -1:
                     print_list[index] = update_obj
-                    ret["jobs"] = print_list
-                    self.cur_print_data = ret
+                    with open(self.print_history_file_path, "w") as f:
+                        ret["jobs"] = print_list
+                        f.write(json.dumps(ret))
+                        f.flush()
             except Exception as err:
                 logging.error(err)
+                if os.path.exists(self.print_history_file_path):
+                    os.remove(self.print_history_file_path)
     def rm_power_loss_info(self):
         if not self.is_continue_print and os.path.exists(self.print_file_name_path):
             try:
@@ -291,8 +312,6 @@ class VirtualSD:
                 bl24c16f = self.printer.lookup_object('bl24c16f') if "bl24c16f" in self.printer.objects and power_loss_switch else None
                 if power_loss_switch and bl24c16f:
                     os.remove(self.print_file_name_path)
-                    if os.path.exists(self.gcode.exclude_object_info):
-                        os.remove(self.gcode.exclude_object_info)
                     self.gcode.run_script_from_command("EEPROM_WRITE_BYTE ADDR=1 VAL=255")
                     logging.info("rm power_loss info success")
             except Exception as err:
@@ -416,12 +435,6 @@ class VirtualSD:
                         logging.info("power_loss get XYZE:%s" % str(result))
                         break
                     self.reactor.pause(self.reactor.monotonic() + .001)
-        except UnicodeDecodeError as err:
-            logging.exception(err)
-            # UnicodeDecodeError 'utf-8' codec can't decode byte 0xff in postion 5278: invalid start byte
-            err_msg = '{"code": "key572", "msg": "File UnicodeDecodeError"}'
-            self.gcode.respond_info(err_msg)
-            raise self.printer.command_error(err_msg)
         except Exception as err:
             logging.exception(err)
         return result
@@ -542,8 +555,6 @@ class VirtualSD:
                         sameFileName = True
                     else:
                         # clear power_loss info
-                        if os.path.exists(self.gcode.exclude_object_info):
-                            os.remove(self.gcode.exclude_object_info)
                         os.remove(self.print_file_name_path)
                         if power_loss_switch and bl24c16f:
                             bl24c16f.setEepromDisable()
@@ -573,8 +584,6 @@ class VirtualSD:
                             from subprocess import call
                             if os.path.exists(self.print_file_name_path):
                                 os.remove(self.print_file_name_path)
-                            if os.path.exists(self.gcode.exclude_object_info):
-                                os.remove(self.gcode.exclude_object_info)
                             call("sync", shell=True)
                             try:
                                 power_loss_switch = False
@@ -607,7 +616,7 @@ class VirtualSD:
         except Exception as err:
             self.print_stats.power_loss = 0
             logging.exception("work_handler RESTORE_GCODE_STATE error: %s" % err)
-        if power_loss_switch and bl24c16f and self.current_file:
+        if power_loss_switch and bl24c16f:
             gcode_move.recordPrintFileName(self.print_file_name_path, self.current_file.name, slow_print=self.slow_print)
         logging.info("Starting SD card print (position %d)", self.file_position)
         self.reactor.unregister_timer(self.work_timer)
@@ -626,17 +635,11 @@ class VirtualSD:
         layer_count = 0
         # self.gcode.run_script("G90")
         toolhead = self.printer.lookup_object('toolhead')
-        start_time = interval_start_time = self.reactor.monotonic()
         while not self.must_pause_work:
             if not lines:
                 # Read more data
                 try:
                     data = self.current_file.read(8192)
-                except UnicodeDecodeError as err:
-                    logging.exception(err)
-                    err_msg = '{"code": "key571", "msg": "File UnicodeDecodeError"}'
-                    self.gcode.respond_info(err_msg)
-                    raise self.printer.command_error(err_msg)
                 except:
                     logging.exception("virtual_sdcard read")
                     break
@@ -648,8 +651,6 @@ class VirtualSD:
                     self.gcode.respond_raw("Done printing file")
                     if os.path.exists(self.print_file_name_path):
                         os.remove(self.print_file_name_path)
-                    if os.path.exists(self.gcode.exclude_object_info):
-                        os.remove(self.gcode.exclude_object_info)
                     if power_loss_switch and bl24c16f:
                         self.gcode.run_script("EEPROM_WRITE_BYTE ADDR=1 VAL=255")
                     self.first_layer_stop = False
@@ -657,10 +658,8 @@ class VirtualSD:
                     self.count_M204 = 0
                     self.layer = 0
                     self.layer_count = 0
+                    reportInformation("key604", data={"filename": filename})
                     self.update_print_history_info(only_update_status=True, state="completed")
-                    time.sleep(0.3)
-                    reportInformation("key701", data=self.cur_print_data)
-                    self.cur_print_data = {}
                     self.print_id = ""
                     break
                 lines = data.split('\n')
@@ -678,42 +677,37 @@ class VirtualSD:
             line = lines.pop()
             next_file_position = self.file_position + len(line) + 1
             self.next_file_position = next_file_position
-            end_time = interval_end_time = self.reactor.monotonic()
-            if self.count_line % 4999 == 0:
+            if self.count_line % 999 == 0:
                 self.update_print_history_info()
             try:
-                # if power_loss_switch and bl24c16f and (self.layer > 2 or (self.count_G1 > 18 and gcode_move.last_position[2] > 0.6)) and self.count_line % 99 == 0:
-                if power_loss_switch and bl24c16f and (self.layer > 2 or (self.count_G1 > 18 and gcode_move.last_position[2] > 0.6)) and end_time-start_time>5 and self.file_position>0:
-                    start_time = end_time
+                if power_loss_switch and bl24c16f and (self.layer > 2 or (self.count_G1 > 18 and gcode_move.last_position[2] > 0.6)) and self.count_line % 99 == 0:
                     base_position_e = round(list(gcode_move.base_position)[-1], 2)
                     pos = bl24c16f.eepromReadHeader()
                     if eepromState:
                         # eeprom first enable
                         self.gcode.run_script("EEPROM_WRITE_BYTE ADDR=1 VAL=1")
-                        self.gcode.run_script("EEPROM_WRITE_INT ADDR=%s VAL=%s" % (pos*8, int(self.file_position)))
+                        self.gcode.run_script("EEPROM_WRITE_INT ADDR=%s VAL=%s" % (pos*8, self.file_position))
                         self.gcode.run_script("EEPROM_WRITE_FLOAT ADDR=%s VAL=%s" % (pos*8+4, base_position_e))
                         self.gcode.run_script("EEPROM_WRITE_BYTE ADDR=0 VAL=%d" % pos)
                         eepromState = False
                     else:
                         # pos = bl24c16f.eepromReadHeader()
                         if self.eepromWriteCount < 256:
-                            self.gcode.run_script("EEPROM_WRITE_INT ADDR=%s VAL=%s" % (pos*8, int(self.file_position)))
+                            self.gcode.run_script("EEPROM_WRITE_INT ADDR=%s VAL=%s" % (pos*8, self.file_position))
                             self.gcode.run_script("EEPROM_WRITE_FLOAT ADDR=%s VAL=%s" % (pos*8+4, base_position_e))
                         else:
                             self.eepromWriteCount = 1
                             pos += 1
                             if pos == 256:
                                 pos = 1
-                            self.gcode.run_script("EEPROM_WRITE_INT ADDR=%s VAL=%s" % (pos*8, int(self.file_position)))
+                            self.gcode.run_script("EEPROM_WRITE_INT ADDR=%s VAL=%s" % (pos*8, self.file_position))
                             self.gcode.run_script("EEPROM_WRITE_FLOAT ADDR=%s VAL=%s" % (pos*8+4, base_position_e))
                             self.gcode.run_script("EEPROM_WRITE_BYTE ADDR=0 VAL=%d" % pos)
                         # logging.info("eepromWriteCount:%d, pos:%d" % (self.eepromWriteCount, pos))
                     self.eepromWriteCount += 1
                 if power_loss_switch and bl24c16f and self.count_G1 == 19:
                     gcode_move.recordPrintFileName(self.print_file_name_path, self.current_file.name, fan_state=self.fan_state, filament_used=self.print_stats.filament_used, last_print_duration=self.print_stats.print_duration, slow_print=self.slow_print)
-                # if power_loss_switch and bl24c16f and (self.layer > 2 or gcode_move.last_position[2] > 3) and self.count_line % 999 == 0:
-                if power_loss_switch and bl24c16f and (self.layer > 2 or gcode_move.last_position[2] > 3) and self.current_file and interval_end_time-interval_start_time > 30:
-                    interval_start_time = interval_end_time
+                if power_loss_switch and bl24c16f and (self.layer > 2 or gcode_move.last_position[2] > 3) and self.count_line % 999 == 0:
                     gcode_move.recordPrintFileName(self.print_file_name_path, self.current_file.name, fan_state=self.fan_state, filament_used=self.print_stats.filament_used, last_print_duration=self.print_stats.print_duration, slow_print=self.slow_print)
                 if line.startswith("G1") and "E" in line:
                     try:
@@ -730,8 +724,6 @@ class VirtualSD:
                 elif line.startswith("END_PRINT"):
                     if os.path.exists(self.print_file_name_path):
                         os.remove(self.print_file_name_path)
-                    if os.path.exists(self.gcode.exclude_object_info):
-                        os.remove(self.gcode.exclude_object_info)
                     if power_loss_switch and bl24c16f:
                         self.gcode.run_script("EEPROM_WRITE_BYTE ADDR=1 VAL=255")
                 elif line.startswith("M900"):
@@ -756,27 +748,23 @@ class VirtualSD:
                                 if location:
                                     cmd_wait_for_stepper = "M400"
                                     # toolhead = self.printer.lookup_object('toolhead')
-                                    # self.gcode.run_script(cmd_wait_for_stepper)
                                     X, Y, Z, E = toolhead.get_position()
                                     if self.count_G1 >= 20:
-                                        self.toolhead_moved = True
                                         # 1. Pull back and lift first
                                         logging.info("G1 F2400 E%s" % (lastE-3))
                                         logging.info(cmd_wait_for_stepper)
-                                        self.gcode.run_script_from_command("G1 F2400 E%s" % (lastE-3))
-                                        self.gcode.run_script_from_command(cmd_wait_for_stepper)
+                                        self.gcode.run_script("G1 F2400 E%s" % (lastE-3))
+                                        self.gcode.run_script(cmd_wait_for_stepper)
                                         time.sleep(0.1)
-                                        logging.info("G1 F3000 Z%s layer:%s" % ((Z + 2), self.layer))
-                                        self.gcode.run_script_from_command("G1 F3000 Z%s" % (Z + 2))
-                                        self.gcode.run_script_from_command(cmd_wait_for_stepper)
-                                        self.timelapse_move(self.print_file_name_path, z_upraise=2)
+                                        self.gcode.run_script("G1 F3000 Z%s" % (Z + 2))
+                                        self.gcode.run_script(cmd_wait_for_stepper)
                                         time.sleep(0.1)
                                         # 2. move to the specified position
                                         cmd = "G0 X5 Y150 F15000"
                                         logging.info(cmd)
                                         logging.info(cmd_wait_for_stepper)
-                                        self.gcode.run_script_from_command(cmd)
-                                        self.gcode.run_script_from_command(cmd_wait_for_stepper)
+                                        self.gcode.run_script(cmd)
+                                        self.gcode.run_script(cmd_wait_for_stepper)
                                         try:
                                             capture_shell = "capture 0"
                                             logging.info(capture_shell)
@@ -789,17 +777,14 @@ class VirtualSD:
                                         move_back_cmd = "G0 X%s Y%s F15000" % (X, Y)
                                         logging.info(move_back_cmd)
                                         logging.info(cmd_wait_for_stepper)
-                                        self.gcode.run_script_from_command(move_back_cmd)
-                                        self.gcode.run_script_from_command(cmd_wait_for_stepper)
+                                        self.gcode.run_script(move_back_cmd)
+                                        self.gcode.run_script(cmd_wait_for_stepper)
                                         time.sleep(0.2)
-                                        logging.info("G1 F3000 Z%s layer:%s" % (Z, self.layer))
-                                        self.gcode.run_script_from_command("G1 F3000 Z%s" % Z)
-                                        self.gcode.run_script_from_command(cmd_wait_for_stepper)
+                                        self.gcode.run_script("G1 F3000 Z%s" % Z)
+                                        self.gcode.run_script(cmd_wait_for_stepper)
                                         time.sleep(0.1)
                                         logging.info("G1 F2400 E%s" % (lastE))
-                                        self.gcode.run_script_from_command("G1 F2400 E%s" % (lastE))
-                                        self.gcode.run_script_from_command(cmd_wait_for_stepper)
-                                        time.sleep(0.2)
+                                        self.gcode.run_script("G1 F2400 E%s" % (lastE))
                                 else:
                                     try:
                                         capture_shell = "capture 0"
@@ -812,7 +797,6 @@ class VirtualSD:
                             break
                 if self.slow_print == True and self.layer > 0 and self.slow_count < self.layer:
                     self.resume_print_speed()
-                self.toolhead_moved = False
                 self.gcode.run_script(line)
                 self.count_line += 1
                 if self.count_G1 < 20 and line.startswith("G1"):
@@ -846,7 +830,6 @@ class VirtualSD:
                 lines = []
                 partial_input = ""
         logging.info("Exiting SD card print (position %d)", self.file_position)
-        self.toolhead_moved = False
         self.count_line = 0
         self.count_G1 = 0
         self.do_resume_status = False
@@ -860,20 +843,6 @@ class VirtualSD:
         else:
             self.print_stats.note_complete()
         return self.reactor.NEVER
-
-    def timelapse_move(self, print_file_name_save_path, z_upraise):
-        if not os.path.exists(print_file_name_save_path):
-            return
-        try:
-            result = {}
-            with open(print_file_name_save_path, "r") as f:
-                result = json.loads(f.read())
-            with open(print_file_name_save_path, "w") as f:
-                result["z_toolhead_moved"] = z_upraise
-                f.write(json.dumps(result))
-                f.flush()
-        except Exception as err:
-            logging.error(err)
 
 def load_config(config):
     return VirtualSD(config)

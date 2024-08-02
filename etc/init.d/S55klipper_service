@@ -11,11 +11,6 @@ PRINTER_CONFIG_DIR=$PRINTER_DATA_DIR/config
 PRINTER_LOGS_DIR=$PRINTER_DATA_DIR/logs
 GCODE_FILES_DIR=$PRINTER_DATA_DIR/gcodes
 PID_FILE=/var/run/klippy.pid
-# default Ender-3 Pro
-PRINTER_MODEL=Ender-3\ Pro
-KLIPPER_CONFIG_DIR=/usr/share/klipper/config/Nebula
-SOURCE_CONFIG_FILE=printer.cfg
-SYS_CONFIG=/usr/data/creality/userdata/config/system_config.json
 
 mcu_reset()
 {
@@ -84,43 +79,6 @@ update_config()
     fi
 }
 
-# get printer model
-# first used default Ender-3 Pro
-get_printer_model()
-{
-    local data=
-    local printer_model=
-    if [ -s $SYS_CONFIG ]; then
-        echo "has $SYS_CONFIG"
-        data=$(grep -r model_str $SYS_CONFIG | awk -F: '{print $2}' | grep -o '".*"' | tr -d '"' )
-        echo "get_printer_model: data=$data"
-        # remove prefix "Nebula-"
-        printer_model=${data#*-}
-        # PRINTER_MODEL=${data#*-}
-        echo "get_printer_model: PRINTER_MODEL=$PRINTER_MODEL"
-        IFS=$'\n'
-        for file in $(ls $KLIPPER_CONFIG_DIR)
-        do
-            echo "file=$file"
-            echo "compare"
-            if [ x"$file" = x"$printer_model" ]; then
-                echo "printer_model is $printer_model"
-                PRINTER_MODEL=$printer_model
-            fi
-        done
-    fi
-}
-
-get_source_file()
-{
-    local data=$(head -n 2 $PRINTER_CONFIG_DIR | tail -n 1 | grep -r '# from')
-    echo "get_source_file: data=$data"
-    if [ x"$data" != "x" ]; then
-        SOURCE_CONFIG_FILE=${data:7}
-    fi
-    echo "get_source_file: SOURCE_CONFIG_FILE=$SOURCE_CONFIG_FILE"
-}
-
 copy_config()
 {
     local model=$(get_sn_mac.sh model)
@@ -129,10 +87,8 @@ copy_config()
 
     case $model in
         "Nebula Pad")
-            get_printer_model
-            config_dir=Nebula/$PRINTER_MODEL
             # config_dir=Nebula/Ender3S1
-            # config_dir=Nebula/Ender-3\ Pro
+            config_dir=Nebula/Ender-3\ Pro
             gcode_dir=
             ;;
 
@@ -143,29 +99,32 @@ copy_config()
 
     esac
 
-    [ "x${config_dir}" = "x" ] && {
-        echo "config_dir is invalid!"
-        exit 0
-    }
-
-    CONFIG_PATH=/usr/share/klipper/config/${config_dir}
-
-    [ -d "${CONFIG_PATH}" ] || {
-        echo "config_dir is not exist!"
-        exit 0
-    }
-
     if [ -s $PRINTER_CONFIG_DIR/printer.cfg ]; then
-        # cp -af `ls /usr/share/klipper/config/${config_dir}/*.cfg | grep -v printer.cfg | xargs` $PRINTER_CONFIG_DIR/
-        ls "${CONFIG_PATH}"/*.cfg | grep -v printer.cfg | xargs -I {} cp -af {} $PRINTER_CONFIG_DIR/
-        sync
+        if [ -s $PRINTER_CONFIG_DIR/printer_params.cfg ]; then
+            echo "no need to update custom config files"
+        else
+            [ "x${config_dir}" != "x" -a -d "/usr/share/klipper/config/${config_dir}" ] && {
+                # keep printer.cfg
+                CONFIG_PATH=/usr/share/klipper/config/${config_dir}
+                # cp -af `ls /usr/share/klipper/config/${config_dir}/*.cfg | grep -v printer.cfg | xargs` $PRINTER_CONFIG_DIR/
+                ls "${CONFIG_PATH}"/*.cfg | grep -v printer.cfg | xargs -I {} cp -af {} $PRINTER_CONFIG_DIR/
+                sync
+            }
+        fi
 
         # update printer.cfg and keep SAVE_CONFIG section
-
-        update_config "/usr/share/klipper/config/${config_dir}/$SOURCE_CONFIG_FILE" $PRINTER_CONFIG_DIR/printer.cfg
+        update_config "/usr/share/klipper/config/${config_dir}/printer.cfg" $PRINTER_CONFIG_DIR/printer.cfg
     else
-        cp -af "${CONFIG_PATH}"/*.cfg $PRINTER_CONFIG_DIR/
-        sync
+        CONFIG_PATH=/usr/share/klipper/config/${config_dir}
+        [ "x${config_dir}" != "x" -a -d "${CONFIG_PATH}" ] && {
+            cp -af "${CONFIG_PATH}"/*.cfg $PRINTER_CONFIG_DIR/
+            sync
+        }
+
+        [ "x${gcode_dir}" != "x" -a -d /usr/share/klipper/gcodes/${gcode_dir} ] && {
+            find /usr/share/klipper/gcodes/${gcode_dir} -iname "*.gcode" -exec cp {} ${GCODE_FILES_DIR}/ \;
+            sync
+        }
     fi
 
     # overlay printer.cfg for pcba test

@@ -306,8 +306,7 @@ class GCodeMove:
                 "M204": "",
                 "filament_used": 0,
                 "last_print_duration": 0,
-                "pressure_advance": "",
-                "z_toolhead_moved": 0
+                "pressure_advance": ""
             }
             import os, json
             base_position_e = -1
@@ -327,7 +326,6 @@ class GCodeMove:
                 state["extrude_factor"] = file_info.get("extrude_factor", 1.0)
                 state["speed"] = file_info.get("speed", 25)
                 state["pressure_advance"] = file_info.get("pressure_advance", "")
-                state["z_toolhead_moved"] = file_info.get("z_toolhead_moved", 0)
             state["last_position"] = [XYZE["X"], XYZE["Y"], XYZE["Z"], XYZE["E"]+base_position_e]
             logging.info("power_loss cmd_CX_RESTORE_GCODE_STATE state:%s" % str(state))
 
@@ -362,7 +360,7 @@ class GCodeMove:
             logging.info("power_loss cmd_CX_RESTORE_GCODE_STATE after BED_MESH_PROFILE LOAD='default'")
             x = self.last_position[0]
             y = self.last_position[1]
-            z = state['last_position'][2] + self.variable_safe_z + state["variable_z_safe_pause"] + state["z_toolhead_moved"]
+            z = state['last_position'][2] + self.variable_safe_z + state["variable_z_safe_pause"]
             logging.info("power_loss cmd_CX_RESTORE_GCODE_STATE self.last_position[2]:%s, state['last_position'][2]:%s, self.variable_safe_z:%s, \
                 state['variable_z_safe_pause']:%s" % (self.last_position[2], state['last_position'][2], self.variable_safe_z, state["variable_z_safe_pause"]))
             toolhead = self.printer.lookup_object("toolhead")
@@ -387,19 +385,6 @@ class GCodeMove:
                 gcode.run_script_from_command(state["pressure_advance"])
             self.absolute_extrude = state['absolute_extrude']
             gcode.run_script_from_command("M221 S%s" % int(state['extrude_factor']*100))
-            try:
-                if os.path.exists(gcode.exclude_object_info):
-                    with open(gcode.exclude_object_info, "r") as f:
-                        exclude_object_cmds = json.loads(f.read())
-                        EXCLUDE_OBJECT_DEFINE = exclude_object_cmds.get("EXCLUDE_OBJECT_DEFINE", [])
-                        EXCLUDE_OBJECT = exclude_object_cmds.get("EXCLUDE_OBJECT", [])
-                        for line in EXCLUDE_OBJECT_DEFINE:
-                            gcode.run_script_from_command(line)
-                        for line in EXCLUDE_OBJECT:
-                            gcode.run_script_from_command(line)
-                        gcode.run_script_from_command("M400")
-            except Exception as err:
-                logging.exception("RESTORE EXCLUDE_OBJECT err:%s" % err)
             logging.info("power_loss cmd_CX_RESTORE_GCODE_STATE done")
         except Exception as err:
             logging.exception("cmd_CX_RESTORE_GCODE_STATE err:%s" % err)

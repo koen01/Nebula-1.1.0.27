@@ -20,14 +20,11 @@ set_hostname_with_model_mac()
             "K1 Max SE")
                 model="K1MaxSE"
                 ;;
-            "PF-05")
-                model="PF05"
+            "F003")
+                model="CR10SE"
                 ;;
-            "F001")
-                model="Ender3V3"
-                ;;
-            "F002")
-                model="Ender3V3 Plus"
+            "F005")
+                model="Ender3KE"
                 ;;
             *)
                 ;;

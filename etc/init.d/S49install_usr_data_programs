@@ -1,0 +1,22 @@
+#!/bin/sh
+# S49install_usr_data_programs - by destinal
+
+# For custom CrealityOS firmware - creality now has us install fluidd etc into /usr/data, so
+# we include tarballs in rootfs and we'll extract them where they go if absent. Ah, compatibility!
+
+case "$1" in
+  start)
+    if [ ! -d "/usr/data/nginx" ] && [ -f "/etc/init.d/S50nginx" ]; then
+      # if nginx isn't in /usr/data, and we didn't explicitly uninstall it, then we assume
+      # this is the first boot with cfw and extract them where they go
+      for file in /usr/lib/cfw/*.tar.gz; do
+        tar -xzvf "$file" -C /usr/data
+      done
+    fi
+    ;;
+  *)
+    echo "Usage: $0 {start}"
+    exit 1
+esac
+
+exit $?
